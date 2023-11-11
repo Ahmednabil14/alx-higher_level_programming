@@ -9,5 +9,5 @@ def roman_to_int(roman_string):
         if roman[roman_string[i]] <= roman[roman_string[i - 1]] or i == 0:
             num += roman[roman_string[i]]
         else:
-            num = roman[roman_string[i]] - num
+              num = num - roman[roman_string[i]]
     return num
