@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 def list_division(my_list_1, my_list_2, list_length):
     new_list = []
-    for i in range(0, max(len(my_list_1), len(my_list_2))):
+    for i in range(0, list_length):
         try:
             x = my_list_1[i] / my_list_2[i]
         except (TypeError, ValueError):
