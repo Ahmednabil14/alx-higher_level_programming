@@ -21,6 +21,8 @@ class Rectangle:
         Instance method that returns an “informal” and nicely
         printable string representation of an instance
         """
+        if self.__height == 0 or self.__width == 0:
+            return ""
         result = ""
         for i in range(self.__height):
             if i == self.__height - 1:
