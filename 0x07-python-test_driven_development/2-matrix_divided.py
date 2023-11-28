@@ -2,6 +2,8 @@
 """
 dividing a list of numbers
 """
+
+
 def matrix_divided(matrix, div):
     """
     function that divide a list of list of intgers or float
@@ -16,7 +18,8 @@ def matrix_divided(matrix, div):
         ZeroDivisionError: division by zero
     """
     if not isinstance(matrix, list):
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+        raise TypeError("matrix must be a matrix (list of lists)\
+                         of integers/floats")
     if div == 0:
         raise ZeroDivisionError("division by zero")
     if not isinstance(div, (int, float)):
@@ -25,12 +28,14 @@ def matrix_divided(matrix, div):
     for i in matrix:
         x = []
         if type(i) is not list:
-            raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+            raise TypeError("matrix must be a matrix (list of lists)\
+                             of integers/floats")
         if len(matrix[0]) != len(matrix[1]):
             raise TypeError("Each row of the matrix must have the same size")
         for n in i:
             if type(n) is not int and type(n) is not float:
-                raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+                raise TypeError("matrix must be a matrix (list of lists)\
+                                 of integers/floats")
             x.append(round(n / div, 2))
         result.append(x)
     return result
