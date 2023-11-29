@@ -29,3 +29,13 @@ TypeError: b must be an integer
 Traceback (most recent call last):
 ...
 TypeError: add_integer() missing 1 required positional argument: 'a'
+
+>>> add_integer(int("ahmed"), int("3"))
+Traceback (most recent call last):
+...
+ValueError: invalid literal for int() with base 10: 'ahmed'
+
+>>> add_integer(float("ahmed"), int("3"))
+Traceback (most recent call last):
+...
+ValueError: could not convert string to float: 'ahmed'
