@@ -1,0 +1,30 @@
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+>>> text_indentation("ahmed. nabil? ali ali")
+ahmed.
+<BLANKLINE>
+nabil?
+<BLANKLINE>
+ali ali
+
+>>> text_indentation("what is your name? my name is : ahmed nabil .")
+what is your name?
+<BLANKLINE>
+my name is :
+<BLANKLINE>
+ahmed nabil .
+<BLANKLINE>
+
+>>> text_indentation("")
+
+
+
+>>> text_indentation(5)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+
+>>> text_indentation()
+Traceback (most recent call last):
+...
+TypeError: text_indentation() missing 1 required positional argument: 'text'
