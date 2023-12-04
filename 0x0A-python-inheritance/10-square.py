@@ -64,11 +64,10 @@ class Square(Rectangle):
         """
         Instantiation with size
         """
+        super().__init__(size, size)
         self.integer_validator("size", size)
         self.__size = size
 
-    def __str__(self):
-        return f"[Rectangle] {self.__size}/{self.__size}"
 
     def area(self):
         """
