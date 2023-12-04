@@ -68,7 +68,6 @@ class Square(Rectangle):
         self.integer_validator("size", size)
         self.__size = size
 
-
     def area(self):
         """
         function that return area of square
