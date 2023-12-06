@@ -11,6 +11,8 @@ def pascal_triangle(n):
     Arguments:
         n: number of rows
     """
+    if n == 0:
+        return[]
     pascal = [[1]]
     for i in range(1, n):
         row = [1]
