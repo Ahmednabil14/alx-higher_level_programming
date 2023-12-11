@@ -265,8 +265,30 @@ class TestRectangleUpdate(unittest.TestCase):
         r1.id = 885
         r1.update(5)
         self.assertEqual("[Rectangle] (5) 4/5 - 2/3", str(r1))
+        r1.update(89, 6, x=8)
+        self.assertEqual("[Rectangle] (89) 4/5 - 6/3", str(r1))
+        r1.update(89, 6, id=8)
+        self.assertEqual("[Rectangle] (89) 4/5 - 6/3", str(r1))
+        r1.update(height=1)
+        self.assertEqual("[Rectangle] (89) 4/5 - 6/1", str(r1))
+        r1.update(y=1, width=2, x=3, id=89)
+        self.assertEqual("[Rectangle] (89) 3/1 - 2/1", str(r1))
+        r1.update(x=1, height=2, y=3, width=4)
+        self.assertEqual("[Rectangle] (89) 1/3 - 4/2", str(r1))
 
     def test_update_empty(self):
         r1 = Rectangle(10, 10, 10, 10, 89)
         r1.update()
         self.assertEqual("[Rectangle] (89) 10/10 - 10/10", str(r1))
+
+    def test_more_args(self):
+        r1 = Rectangle(10, 10, 10, 10, 89)
+        r1.update(5, 4, 2, 8, 9, 2, 7)
+        self.assertEqual("[Rectangle] (5) 8/9 - 4/2", str(r1))
+
+    def test_wrong_key(self):
+        r1 = Rectangle(10, 10, 10, 10, 89)
+        r1.update(ahmed=8)
+        self.assertEqual("[Rectangle] (89) 10/10 - 10/10", str(r1))
+        r1.update(ahmed=8, id=100)
+        self.assertEqual("[Rectangle] (100) 10/10 - 10/10", str(r1))
