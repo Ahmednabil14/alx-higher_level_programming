@@ -158,5 +158,5 @@ class Rectangle(Base):
         dic = {}
         for attr in dir(self):
             if not callable(getattr(self, attr)) and attr[0] != '_':
-                dic.update({attr:getattr(self, attr)})
+                dic.update({attr: getattr(self, attr)})
         return dic
