@@ -8,6 +8,7 @@ import unittest
 from io import StringIO
 from contextlib import redirect_stdout
 
+
 class TestRectangleInstantiation(unittest.TestCase):
     def test_rectangle_is_instance(self):
         self.assertIsInstance(Rectangle(1, 2), Base)
@@ -37,7 +38,7 @@ class TestRectangleInstantiation(unittest.TestCase):
 
     def test_getter_width(self):
         rec1 = Rectangle(10, 2, 0, 0)
-        self.assertEqual(rec1.width, 10)        
+        self.assertEqual(rec1.width, 10)
 
     def test_getter_height(self):
         rec1 = Rectangle(10, 2, 0, 0)
@@ -81,7 +82,6 @@ class TestRectangleInstantiation(unittest.TestCase):
             rec.__x
         with self.assertRaises(AttributeError):
             rec.__y
-            
 
     def test_passing_float(self):
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
@@ -102,7 +102,7 @@ class TestRectangleInstantiation(unittest.TestCase):
             Rectangle(1, 10, "ahmed")
         with self.assertRaisesRegex(TypeError, "y must be an integer"):
             Rectangle(1, 10, 7, "ahmed")
-    
+
     def test_passing_bool(self):
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Rectangle(True, 10)
@@ -112,7 +112,7 @@ class TestRectangleInstantiation(unittest.TestCase):
             Rectangle(1, 10, True)
         with self.assertRaisesRegex(TypeError, "y must be an integer"):
             Rectangle(1, 10, 7, True)
-    
+
     def test_passing_list(self):
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Rectangle([1, 8, 9], 10)
@@ -122,7 +122,7 @@ class TestRectangleInstantiation(unittest.TestCase):
             Rectangle(1, 10, [1, 8, 9])
         with self.assertRaisesRegex(TypeError, "y must be an integer"):
             Rectangle(1, 10, 7, [1, 8, 9])
-    
+
     def test_passing_tuple(self):
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Rectangle((1, 8, 9), 10)
@@ -135,13 +135,13 @@ class TestRectangleInstantiation(unittest.TestCase):
 
     def test_passing_dict(self):
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
-            Rectangle({"name":"ahmed", "id":7}, 10)
+            Rectangle({"name": "ahmed", "id": 7}, 10)
         with self.assertRaisesRegex(TypeError, "height must be an integer"):
-            Rectangle(1, {"name":"ahmed", "id":7})
+            Rectangle(1, {"name": "ahmed", "id": 7})
         with self.assertRaisesRegex(TypeError, "x must be an integer"):
-            Rectangle(1, 10, {"name":"ahmed", "id":7})
+            Rectangle(1, 10, {"name": "ahmed", "id": 7})
         with self.assertRaisesRegex(TypeError, "y must be an integer"):
-            Rectangle(1, 10, 7, {"name":"ahmed", "id":7})
+            Rectangle(1, 10, 7, {"name": "ahmed", "id": 7})
 
     def test_width_equal_zero(self):
         with self.assertRaisesRegex(ValueError, "width must be > 0"):
@@ -187,6 +187,7 @@ class TestRectangleInstantiation(unittest.TestCase):
         with self.assertRaisesRegex(TypeError, "y must be an integer"):
             Rectangle(7, 8, 8, float('nan'))
 
+
 class TestRectangleArea(unittest.TestCase):
     def test_area1(self):
         r = Rectangle(2, 5)
@@ -196,6 +197,7 @@ class TestRectangleArea(unittest.TestCase):
         r = Rectangle(2, 5, 7, 9, 87)
         self.assertEqual(r.area(), 10)
 
+
 class TestRectangleDisplay(unittest.TestCase):
     def test_display_width_height(self):
         r = Rectangle(2, 5)
@@ -204,7 +206,7 @@ class TestRectangleDisplay(unittest.TestCase):
         with redirect_stdout(f):
             r.display()
         self.assertEqual(f.getvalue(), actual_result)
-    
+
     def test_display_width_height_x(self):
         r = Rectangle(2, 5, 2)
         actual_result = "  ##\n"*5
@@ -212,7 +214,7 @@ class TestRectangleDisplay(unittest.TestCase):
         with redirect_stdout(f):
             r.display()
         self.assertEqual(f.getvalue(), actual_result)
-    
+
     def test_display_width_height_x_y(self):
         r = Rectangle(2, 5, 2, 4)
         actual_result = "\n"*4 + "  ##\n"*5
@@ -229,6 +231,7 @@ class TestRectangleDisplay(unittest.TestCase):
             r.display()
         self.assertEqual(f.getvalue(), actual_result)
 
+
 class TestRecrangleStr(unittest.TestCase):
     def test_str(self):
         r = Rectangle(4, 6, 2, 1, 12)
@@ -244,6 +247,7 @@ class TestRecrangleStr(unittest.TestCase):
         r2 = Rectangle(5, 5)
         actual_result = "[Rectangle] ({}) 0/0 - 5/5".format(r1.id + 1)
         self.assertEqual(str(r2), actual_result)
+
 
 class TestRectangleUpdate(unittest.TestCase):
     def test_update(self):

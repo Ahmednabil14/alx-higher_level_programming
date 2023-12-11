@@ -41,7 +41,3 @@ class TestBaseInstantiation(unittest.TestCase):
     def test_two_constructor_arguments(self):
         with self.assertRaises(TypeError):
             b = Base(1, 2)
-
-
-
-
