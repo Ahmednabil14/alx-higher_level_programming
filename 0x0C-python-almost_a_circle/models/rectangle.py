@@ -150,3 +150,13 @@ class Rectangle(Base):
         else:
             for key, value in kwargs.items():
                 setattr(self, key, value)
+
+    def to_dictionary(self):
+        """
+        function that return the class attributes as dictionary
+        """
+        dic = {}
+        for attr in dir(self):
+            if not callable(getattr(self, attr)) and attr[0] != '_':
+                dic.update({attr:getattr(self, attr)})
+        return dic
