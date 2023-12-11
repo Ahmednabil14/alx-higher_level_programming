@@ -123,3 +123,25 @@ class Rectangle(Base):
             for w in range(self.__width):
                 print("#", end='')
             print()
+
+    def update(self, *args):
+        """
+        function that update rectangle instance attributes
+            1st argument should be the id attribute
+            2nd argument should be the width attribute
+            3rd argument should be the height attribute
+            4th argument should be the x attribute
+            5th argument should be the y attribute
+        """
+        count = 0
+        for i in range(len(args)):
+            if i == 0:
+                self.id = args[0]
+            if i == 1:
+                self.__width = args[1]
+            if i == 2:
+                self.__height = args[2]
+            if i == 3:
+                self.__x = args[3]
+            if i == 4:
+                self.__y = args[4]

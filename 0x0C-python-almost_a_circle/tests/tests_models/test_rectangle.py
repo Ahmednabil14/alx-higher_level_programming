@@ -229,7 +229,6 @@ class TestRectangleDisplay(unittest.TestCase):
             r.display()
         self.assertEqual(f.getvalue(), actual_result)
 
-
 class TestRecrangleStr(unittest.TestCase):
     def test_str(self):
         r = Rectangle(4, 6, 2, 1, 12)
@@ -245,3 +244,25 @@ class TestRecrangleStr(unittest.TestCase):
         r2 = Rectangle(5, 5)
         actual_result = "[Rectangle] ({}) 0/0 - 5/5".format(r1.id + 1)
         self.assertEqual(str(r2), actual_result)
+
+class TestRectangleUpdate(unittest.TestCase):
+    def test_update(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(89)
+        self.assertEqual("[Rectangle] (89) 10/10 - 10/10", str(r1))
+        r1.update(89, 2)
+        self.assertEqual("[Rectangle] (89) 10/10 - 2/10", str(r1))
+        r1.update(89, 2, 3)
+        self.assertEqual("[Rectangle] (89) 10/10 - 2/3", str(r1))
+        r1.update(89, 2, 3, 4)
+        self.assertEqual("[Rectangle] (89) 4/10 - 2/3", str(r1))
+        r1.update(89, 2, 3, 4, 5)
+        self.assertEqual("[Rectangle] (89) 4/5 - 2/3", str(r1))
+        r1.id = 885
+        r1.update(5)
+        self.assertEqual("[Rectangle] (5) 4/5 - 2/3", str(r1))
+
+    def test_update_empty(self):
+        r1 = Rectangle(10, 10, 10, 10, 89)
+        r1.update()
+        self.assertEqual("[Rectangle] (89) 10/10 - 10/10", str(r1))
