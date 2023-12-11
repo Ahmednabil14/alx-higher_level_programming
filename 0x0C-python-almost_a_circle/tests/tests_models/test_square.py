@@ -60,6 +60,10 @@ class TestSquareInstantiation(unittest.TestCase):
         Sqr1 = Square(10, 2, 3, 7)
         self.assertEqual(Sqr1.y, 3)
 
+    def test_getter_size(self):
+        Sqr1 = Square(10, 2, 3, 7)
+        self.assertEqual(Sqr1.size, 10)
+
     def test_setter_width(self):
         Sqr1 = Square(10, 2, 3, 7)
         Sqr1.width = 6
@@ -79,6 +83,13 @@ class TestSquareInstantiation(unittest.TestCase):
         Sqr1 = Square(10, 2, 3, 7)
         Sqr1.y = 6
         self.assertEqual(Sqr1.y, 6)
+
+    def test_setter_size(self):
+        Sqr1 = Square(10, 2, 3, 7)
+        Sqr1.size = 6
+        self.assertEqual(Sqr1.size, 6)
+        self.assertEqual(Sqr1.width, 6)
+        self.assertEqual(Sqr1.height, 6)
 
     def test_privacy(self):
         Sqr = Square(10, 2)
