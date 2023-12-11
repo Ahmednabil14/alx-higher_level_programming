@@ -181,3 +181,107 @@ class TestSquareInstantiation(unittest.TestCase):
             Square(7, float('nan'))
         with self.assertRaisesRegex(TypeError, "y must be an integer"):
             Square(7, 8, float('nan'))
+
+
+class TestSquareArea(unittest.TestCase):
+    def test_area1(self):
+        s = Square(2, 5)
+        self.assertEqual(s.area(), 4)
+
+    def test_area2(self):
+        s = Square(2, 5, 7, 9)
+        self.assertEqual(s.area(), 4)
+
+
+class TestSquareDisplay(unittest.TestCase):
+    def test_display_width_height(self):
+        s = Square(2)
+        actual_result = "##\n"*2
+        f = StringIO()
+        with redirect_stdout(f):
+            s.display()
+        self.assertEqual(f.getvalue(), actual_result)
+
+    def test_display_width_height_x(self):
+        s = Square(2, 2)
+        actual_result = "  ##\n"*2
+        f = StringIO()
+        with redirect_stdout(f):
+            s.display()
+        self.assertEqual(f.getvalue(), actual_result)
+
+    def test_display_width_height_x_y(self):
+        r = Square(2, 5, 2, 4)
+        actual_result = "\n"*2 + "     ##\n"*2
+        f = StringIO()
+        with redirect_stdout(f):
+            r.display()
+        self.assertEqual(f.getvalue(), actual_result)
+
+    def test_display_width_height_y(self):
+        r = Square(2, 0, 4, 4)
+        actual_result = "\n"*4 + "##\n"*2
+        f = StringIO()
+        with redirect_stdout(f):
+            r.display()
+        self.assertEqual(f.getvalue(), actual_result)
+
+
+class TestSquareStr(unittest.TestCase):
+    def test_str(self):
+        r = Square(4, 2, 1, 12)
+        actual_result = "[Square] (12) 2/1 - 4"
+        self.assertEqual(str(r), actual_result)
+
+        r1 = Square(5, 1)
+        r2 = Square(5, 1)
+        actual_result = "[Square] ({}) 1/0 - 5".format(r1.id + 1)
+        self.assertEqual(str(r2), actual_result)
+
+        r1 = Square(5)
+        r2 = Square(5)
+        actual_result = "[Square] ({}) 0/0 - 5".format(r1.id + 1)
+        self.assertEqual(str(r2), actual_result)
+
+
+class TestSquareUpdate(unittest.TestCase):
+    def test_update(self):
+        r1 = Square(10, 10, 10)
+        r1.update(89)
+        self.assertEqual("[Square] (89) 10/10 - 10", str(r1))
+        r1.update(89, 2)
+        self.assertEqual("[Square] (89) 10/10 - 2", str(r1))
+        r1.update(89, 2, 3)
+        self.assertEqual("[Square] (89) 3/10 - 2", str(r1))
+        r1.update(89, 2, 4)
+        self.assertEqual("[Square] (89) 4/10 - 2", str(r1))
+        r1.update(89, 2, 4, 5)
+        self.assertEqual("[Square] (89) 4/5 - 2", str(r1))
+        r1.id = 885
+        r1.update(5)
+        self.assertEqual("[Square] (5) 4/5 - 2", str(r1))
+        r1.update(89, 6, x=8)
+        self.assertEqual("[Square] (89) 4/5 - 6", str(r1))
+        r1.update(89, 6, id=8)
+        self.assertEqual("[Square] (89) 4/5 - 6", str(r1))
+        r1.update(y=1, size=2, x=3, id=89)
+        self.assertEqual("[Square] (89) 3/1 - 2", str(r1))
+        r1.update(x=1, y=3, size=4)
+        self.assertEqual("[Square] (89) 1/3 - 4", str(r1))
+
+    def test_update_empty(self):
+        r1 = Square(10, 10, 10, 89)
+        r1.update()
+        self.assertEqual("[Square] (89) 10/10 - 10", str(r1))
+
+    def test_more_args(self):
+        r1 = Square(10, 10, 10, 89)
+        r1.update(5, 4, 8, 9, 2, 7)
+        self.assertEqual("[Square] (5) 8/9 - 4", str(r1))
+
+    def test_wrong_key(self):
+        r1 = Square(10, 10, 10, 89)
+        r1.update(ahmed=8)
+        self.assertEqual("[Square] (89) 10/10 - 10", str(r1))
+        r1.update(ahmed=8, id=100)
+        self.assertEqual("[Square] (100) 10/10 - 10", str(r1))
