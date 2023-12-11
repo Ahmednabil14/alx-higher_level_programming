@@ -285,3 +285,12 @@ class TestSquareUpdate(unittest.TestCase):
         self.assertEqual("[Square] (89) 10/10 - 10", str(r1))
         r1.update(ahmed=8, id=100)
         self.assertEqual("[Square] (100) 10/10 - 10", str(r1))
+
+
+class TestSquareToDictionary(unittest.TestCase):
+    def test_to_dictionary(self):
+        s = Square(10, 2, 1, 9)
+        dic = s.to_dictionary()
+        expected = {'id': 9, 'size': 10, 'x': 2, 'y': 1}
+        self.assertEqual(expected, dic)
+        self.assertEqual(type(dic), dict)
