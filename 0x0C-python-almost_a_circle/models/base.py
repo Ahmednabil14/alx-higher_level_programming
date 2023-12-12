@@ -72,6 +72,14 @@ class Base:
         arguments:
             dictionary: it is kwarg
         """
-        instance = cls.__new__(cls)
-        instance.update(**dictionary)
-        return instance
+        from models.rectangle import Rectangle
+        from models.square import Square
+
+        if cls.__name__ == 'Rectangle':
+            r = Rectangle(1, 1)
+            r.update(**dictionary)
+            return r
+        elif cls.__name__ == 'Square':
+            s = Square(1)
+            s.update(**dictionary)
+            return s

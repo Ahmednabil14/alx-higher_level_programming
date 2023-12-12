@@ -17,11 +17,11 @@ class Rectangle(Base):
             width: rectangle's width
             height: rectangle's height
         """
+        super().__init__(id)
         self.width = width
         self.height = height
         self.x = x
         self.y = y
-        super().__init__(id)
 
     def __str__(self):
         return "[Rectangle] ({}) {}/{} - {}/{}".\

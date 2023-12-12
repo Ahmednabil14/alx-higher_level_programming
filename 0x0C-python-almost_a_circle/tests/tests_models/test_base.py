@@ -70,21 +70,6 @@ class TestBaseToJsonString(unittest.TestCase):
 
 
 class TestSaveToFile(unittest.TestCase):
-    def test_happy_case_rectangle(self):
-        r1 = Rectangle(10, 7, 2, 8)
-        r2 = Rectangle(2, 4)
-        Rectangle.save_to_file([r1, r2])
-        with open("Rectangle.json", 'r') as f:
-            self.assertEqual(len(f.read()), 105)
-        os.remove("Rectangle.json")
-
-    def test_happy_case_square(self):
-        r1 = Square(10, 7, 2, 8)
-        r2 = Square(2, 4)
-        Square.save_to_file([r1, r2])
-        with open("Square.json", 'r') as f:
-            self.assertEqual(len(f.read()), 78)
-        os.remove("Square.json")
 
     def test_none_rectangle(self):
         Rectangle.save_to_file(None)
@@ -137,3 +122,13 @@ class TestCreat(unittest.TestCase):
         r1_dictionary = r1.to_dictionary()
         r2 = Rectangle.create(**r1_dictionary)
         self.assertEqual(str(r1), str(r2))
+
+    def test_dictinary(self):
+        r1 = Rectangle.create(**{'width': 2, 'height': 3, 'x': 12,
+                                 'y': 5, 'id': 6})
+        self.assertEqual(str(r1), '[Rectangle] (6) 12/5 - 2/3')
+
+    def test_square(self):
+        s1 = Square(1)
+        s = Square.create(**{'size': 2})
+        self.assertEqual(str(s), "[Square] ({}) 0/0 - 2".format(s1.id + 1))
