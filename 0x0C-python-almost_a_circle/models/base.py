@@ -61,6 +61,6 @@ class Base:
         arguments:
             json_string: is a string representing a list of dictionaries
         """
-        if len(json_string) == 0 or json_string is None:
+        if not json_string or json_string is None:
             return []
         return json.loads(json_string)
