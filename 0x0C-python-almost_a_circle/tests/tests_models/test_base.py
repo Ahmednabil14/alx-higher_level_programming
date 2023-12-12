@@ -83,7 +83,7 @@ class TestSaveToFile(unittest.TestCase):
         r2 = Square(2, 4)
         Square.save_to_file([r1, r2])
         with open("Square.json", 'r') as f:
-            self.assertEqual(len(f.read()), 77)
+            self.assertEqual(len(f.read()), 78)
         os.remove("Square.json")
 
     def test_none_rectangle(self):
@@ -129,3 +129,11 @@ class TestFromJsonString(unittest.TestCase):
     def test_none(self):
         out = Square.from_json_string('')
         self.assertEqual(out, [])
+
+
+class TestCreat(unittest.TestCase):
+    def test_happy_case(self):
+        r1 = Rectangle(3, 5, 1)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+        self.assertEqual(str(r1), str(r2))

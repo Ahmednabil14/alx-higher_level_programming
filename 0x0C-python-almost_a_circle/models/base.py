@@ -64,3 +64,14 @@ class Base:
         if not json_string or json_string is None:
             return []
         return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """
+        class method that returns an instance with all attributes already set
+        arguments:
+            dictionary: it is kwarg
+        """
+        instance = cls.__new__(cls)
+        instance.update(**dictionary)
+        return instance
