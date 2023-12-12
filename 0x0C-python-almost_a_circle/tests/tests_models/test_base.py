@@ -4,6 +4,7 @@ test base class
 """
 import unittest
 from models.base import Base
+from models.rectangle import Rectangle
 
 
 class TestBaseInstantiation(unittest.TestCase):
@@ -41,3 +42,25 @@ class TestBaseInstantiation(unittest.TestCase):
     def test_two_constructor_arguments(self):
         with self.assertRaises(TypeError):
             b = Base(1, 2)
+
+
+class TestBaseToJsonString(unittest.TestCase):
+    def test_happy_case(self):
+        dictionary = {'x': 2}
+        result = Base.to_json_string([dictionary])
+        expected_result = '[{"x": 2}]'
+        self.assertEqual(result, expected_result)
+        self.assertEqual(type(dictionary), dict)
+        self.assertEqual(type(result), str)
+
+    def test_empty(self):
+        dic = {}
+        dic2 = [{}, {}]
+        result = Base.to_json_string(dic)
+        self.assertEqual(result, '[]')
+        self.assertEqual(Base.to_json_string(dic2), '[{}, {}]')
+
+    def test_None(self):
+        dic = None
+        result = Base.to_json_string(dic)
+        self.assertEqual(result, '[]')
