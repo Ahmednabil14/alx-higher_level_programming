@@ -3,6 +3,7 @@
 Base class
 """
 import json
+import csv
 
 
 class Base:
@@ -35,3 +36,19 @@ class Base:
             return "[]"
         else:
             return json.dumps(list_dictionaries)
+
+    @classmethod
+    def save_to_file(cls, list_objs):
+        """
+        class method that writes the JSON string
+        representation of list_objs to a file
+        arguments:
+            list_objs: is a list of instances who inherits of Base
+        """
+        dic_list = []
+        if list_objs is not None:
+            for i in list_objs:
+                if isinstance(i, Base):
+                    dic_list.append(i.to_dictionary())
+        with open("{}.json".format(cls.__name__), 'w', encoding="utf-8") as f:
+            f.write(cls.to_json_string(dic_list))

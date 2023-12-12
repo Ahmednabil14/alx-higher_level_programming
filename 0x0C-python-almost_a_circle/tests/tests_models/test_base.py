@@ -3,8 +3,11 @@
 test base class
 """
 import unittest
+import os
+from io import StringIO
 from models.base import Base
 from models.rectangle import Rectangle
+from models.square import Square
 
 
 class TestBaseInstantiation(unittest.TestCase):
@@ -64,3 +67,45 @@ class TestBaseToJsonString(unittest.TestCase):
         dic = None
         result = Base.to_json_string(dic)
         self.assertEqual(result, '[]')
+
+
+class TestSaveToFile(unittest.TestCase):
+    def test_happy_case_rectangle(self):
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        Rectangle.save_to_file([r1, r2])
+        with open("Rectangle.json", 'r') as f:
+            self.assertEqual(len(f.read()), 105)
+        os.remove("Rectangle.json")
+
+    def test_happy_case_square(self):
+        r1 = Square(10, 7, 2, 8)
+        r2 = Square(2, 4)
+        Square.save_to_file([r1, r2])
+        with open("Square.json", 'r') as f:
+            self.assertEqual(len(f.read()), 77)
+        os.remove("Square.json")
+
+    def test_none_rectangle(self):
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json", 'r') as f:
+            self.assertEqual(f.read(), '[]')
+        os.remove("Rectangle.json")
+
+    def test_empty_rectangle(self):
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", 'r') as f:
+            self.assertEqual(f.read(), '[]')
+        os.remove("Rectangle.json")
+
+    def test_none_square(self):
+        Square.save_to_file(None)
+        with open("Square.json", 'r') as f:
+            self.assertEqual(f.read(), '[]')
+        os.remove("Square.json")
+
+    def test_empty_square(self):
+        Square.save_to_file([])
+        with open("Square.json", 'r') as f:
+            self.assertEqual(f.read(), '[]')
+        os.remove("Square.json")
