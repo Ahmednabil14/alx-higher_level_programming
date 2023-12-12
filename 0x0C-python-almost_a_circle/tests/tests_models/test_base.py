@@ -109,3 +109,23 @@ class TestSaveToFile(unittest.TestCase):
         with open("Square.json", 'r') as f:
             self.assertEqual(f.read(), '[]')
         os.remove("Square.json")
+
+
+class TestFromJsonString(unittest.TestCase):
+    def test_happy_case(self):
+        list_input = [
+            {'id': 89},
+            {'id': 7}
+        ]
+        list_output = Base.to_json_string(list_input)
+        list_json = Base.from_json_string(list_output)
+        self.assertEqual(type(list_json), list)
+        self.assertEqual(list_input, list_json)
+
+    def test_empty(self):
+        out = Rectangle.from_json_string('')
+        self.assertEqual([], out)
+
+    def test_none(self):
+        out = Square.from_json_string('')
+        self.assertEqual(out, [])

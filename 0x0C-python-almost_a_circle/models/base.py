@@ -52,3 +52,15 @@ class Base:
                     dic_list.append(i.to_dictionary())
         with open("{}.json".format(cls.__name__), 'w', encoding="utf-8") as f:
             f.write(cls.to_json_string(dic_list))
+
+    @staticmethod
+    def from_json_string(json_string):
+        """
+        static method that returns the list of the
+        JSON string representation json_string
+        arguments:
+            json_string: is a string representing a list of dictionaries
+        """
+        if len(json_string) == 0 or json_string is None:
+            return []
+        return json.loads(json_string)
