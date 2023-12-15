@@ -132,3 +132,8 @@ class TestCreat(unittest.TestCase):
         s1 = Square(1)
         s = Square.create(**{'size': 2})
         self.assertEqual(str(s), "[Square] ({}) 0/0 - 2".format(s1.id + 1))
+
+
+class TestLoadFromFile(unittest.TestCase):
+    def test1(self):
+        pass
