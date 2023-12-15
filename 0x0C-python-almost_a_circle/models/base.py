@@ -3,7 +3,7 @@
 Base class
 """
 import json
-import csv
+import os
 
 
 class Base:
@@ -83,3 +83,18 @@ class Base:
             s = Square(1)
             s.update(**dictionary)
             return s
+
+    @classmethod
+    def load_from_file(cls):
+        """
+        class method that returns a list of instances
+        """
+        list = []
+        if not os.path.exists("{}.json".format(cls.__name__)):
+            return []
+        with open("{}.json".format(cls.__name__), 'r') as f:
+            data = f.read()
+        obj = cls.from_json_string(data)
+        for dic in obj:
+            list.append(cls.create(**dic))
+        return list
