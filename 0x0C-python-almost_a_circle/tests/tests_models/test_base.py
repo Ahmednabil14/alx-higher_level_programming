@@ -95,6 +95,12 @@ class TestSaveToFile(unittest.TestCase):
             self.assertEqual(f.read(), '[]')
         os.remove("Square.json")
 
+    def test__square(self):
+        Square.save_to_file([Square(1, 2, 3, 4)])
+        with open("Square.json", 'r') as f:
+            self.assertEqual(len(f.read()), 38)
+        os.remove("Square.json")
+
 
 class TestFromJsonString(unittest.TestCase):
     def test_happy_case(self):
