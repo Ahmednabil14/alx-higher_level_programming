@@ -1,11 +1,11 @@
 #!/usr/bin/node
 
-let x = process.argv;
+const x = process.argv;
 let i = 0;
 let j = 0;
 
 if (x[3]) {
-  for (let index = 2; index < x.length; index++){
+  for (let index = 2; index < x.length; index++) {
     if (Number(x[index]) > i) {
       i = x[index];
     }
@@ -17,5 +17,5 @@ if (x[3]) {
   }
   console.log(j);
 } else {
-    console.log(0);
+  console.log(0);
 }
