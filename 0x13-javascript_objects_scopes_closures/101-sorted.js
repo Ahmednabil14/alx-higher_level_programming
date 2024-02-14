@@ -21,5 +21,4 @@ for (const item of valFilter) {
   }
   newDict[item] = arr;
 }
-console.log(valFilter);
 console.log(newDict);
