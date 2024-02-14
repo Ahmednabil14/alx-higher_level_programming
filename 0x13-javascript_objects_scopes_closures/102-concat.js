@@ -8,12 +8,16 @@ fs.readFile(fileA, 'utf8', function (err, fileA) {
   if (err) {
     return;
   }
-  data += fileA + '\n';
+  if (fileA) {
+    data += fileA + '\n';
+  }
   fs.readFile(fileB, 'utf8', function (err, fileB) {
     if (err) {
       return;
     }
-    data += fileB + '\n';
+    if (fileB) {
+      data += fileB + '\n';
+    }
     fs.writeFile(fileC, data, function () {
     });
   }
