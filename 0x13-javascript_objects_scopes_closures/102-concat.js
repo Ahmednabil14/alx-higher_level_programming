@@ -14,10 +14,7 @@ fs.readFile(fileA, 'utf8', function (err, fileA) {
       return;
     }
     data += fileB + '\n';
-    fs.writeFile(fileC, data, function (err) {
-      if (err) {
-        return;
-      }
+    fs.writeFile(fileC, data, function () {
     });
   }
   );
