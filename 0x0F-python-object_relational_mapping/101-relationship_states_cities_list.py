@@ -6,7 +6,7 @@ contained in the database hbtn_0e_101_usa
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from relationship_city import City
-from relationship_state import State
+from relationship_state import State, Base
 from sys import argv
 
 if __name__ == "__main__":
@@ -15,6 +15,7 @@ if __name__ == "__main__":
     ))
     session = sessionmaker(bind=engine)
     Session = session()
+    Base.metadata.create_all(engine)
     states = Session.query(State).order_by(State.id).all()
     for state in states:
         print("{}: {}".format(state.id, state.name))
