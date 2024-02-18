@@ -4,8 +4,7 @@ file that contains the class definition of a State and an
 instance Base = declarative_base()
 """
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine, Column, Integer, String
-from sys import argv
+from sqlalchemy import Column, Integer, String
 
 Base = declarative_base()
 
