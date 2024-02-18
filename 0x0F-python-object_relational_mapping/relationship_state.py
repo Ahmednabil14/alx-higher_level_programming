@@ -17,5 +17,4 @@ class State(Base):
     id = Column(Integer, autoincrement=True, primary_key=True)
     name = Column(String(128), nullable=False)
     """cities contain objects of City class"""
-    cities = relationship('City', back_populates='state',
-                          cascade="delete, all")
+    cities = relationship('City', cascade="delete, all")
