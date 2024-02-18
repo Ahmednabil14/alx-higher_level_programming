@@ -13,7 +13,6 @@ if __name__ == "__main__":
     ))
     Session = sessionmaker(bind=engine)
     session = Session()
-    states = session.query(State).order_by(State.id)  # get all objects
+    states = session.query(State).order_by(State.id).all()  # get all objects
     for state in states:
-        print(state)
-        # print("{}: {}".format(state.id, state.name))
+        print("{}: {}".format(state.id, state.name))
