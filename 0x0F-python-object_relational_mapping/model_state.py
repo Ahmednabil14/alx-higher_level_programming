@@ -1,4 +1,4 @@
-#!/user/bin/python3
+#!/usr/bin/python3
 """
 file that contains the class definition of a State and an
 instance Base = declarative_base()
@@ -13,6 +13,5 @@ class State(Base):
     """class represnting states table"""
 
     __tablename__ = 'states'
-    id = Column(Integer, autoincrement=True, primary_key=True,
-                nullable=False, unique=True)
+    id = Column(Integer, autoincrement=True, primary_key=True)
     name = Column(String(128), nullable=False)
