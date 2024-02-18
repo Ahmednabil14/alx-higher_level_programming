@@ -9,7 +9,7 @@ from sqlalchemy import Column, Integer, String
 Base = declarative_base()
 
 
-class State (Base):
+class State(Base):
     """class represnting states table"""
     __tablename__ = 'states'
     id = Column(Integer, autoincrement=True, primary_key=True)
