@@ -3,12 +3,15 @@
 
 
 def find_peak(list_of_integers):
+    """get the peak number"""
     if not list_of_integers:
         return None
 
     return find_peak_recursive(list_of_integers, 0, len(list_of_integers) - 1)
 
+
 def find_peak_recursive(lst, first, last):
+    """function to recursive"""
     if first == last:
         return lst[first]
 
