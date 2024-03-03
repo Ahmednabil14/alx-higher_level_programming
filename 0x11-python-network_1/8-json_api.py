@@ -8,7 +8,10 @@ from sys import argv
 
 
 if __name__ == "__main__":
-    data = {"q": argv[1]}
+    if argv[1]:
+        data = {"q": argv[1]}
+    else:
+        data = {"q": ""}
     resp = requests.post(url="http://0.0.0.0:5000/search_user", data=data)
     if resp.status_code == 200:
         try:
