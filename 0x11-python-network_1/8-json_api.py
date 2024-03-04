@@ -15,10 +15,10 @@ if __name__ == "__main__":
     resp = requests.post(url="http://0.0.0.0:5000/search_user", data=data)
     if resp.status_code == 200:
         try:
-            json = resp.json()
-            if json:
-                print("[{}] {}".format(json["id"], json["name"]))
+            json_data = resp.json()
+            if json_data:
+                print("[{}] {}".format(json_data["id"], json_data["name"]))
             else:
                 print("No result")
-        except requests.exceptions.JSONDecodeError:
+        except Exception:
             print("Not a valid JSON")
