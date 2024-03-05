@@ -10,6 +10,6 @@ if __name__ == "__main__":
             argv[1], argv[2]))
     if resp.status_code == 200:
         json_data = resp.json()
-        for commit in commits[:10]:
+        for commit in json_data[:10]:
             print(commit.get('sha'), end=': ')
             print(commit.get('commit').get('author').get('name'))
