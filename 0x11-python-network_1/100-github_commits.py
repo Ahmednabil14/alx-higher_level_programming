@@ -9,12 +9,13 @@ if __name__ == "__main__":
     resp = requests.get(
         url="https://api.github.com/repos/{}/{}/commits".format(
             argv[1], argv[2]))
-    json_data = resp.json()
-    while i < 10:
-        try:
-            print("{}: {}".format(
-                json_data[i].get("sha"), json_data[i].get(
-                    "commit").get("author").get("name")))
-        except Exception:
-            break
-        i += 1
+    if resp.status_code == 200:
+        json_data = resp.json()
+        while i < 10:
+            try:
+                print("{}: {}".format(
+                    json_data[i].get("sha"), json_data[i].get(
+                        "commit").get("author").get("name")))
+            except Exception:
+                break
+            i += 1
