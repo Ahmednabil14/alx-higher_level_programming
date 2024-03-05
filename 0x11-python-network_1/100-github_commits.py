@@ -11,7 +11,10 @@ if __name__ == "__main__":
             argv[1], argv[2]))
     json_data = resp.json()
     while i < 10:
-        print("{}: {}".format(
-            json_data[i].get("sha"), json_data[i].get(
-                "commit").get("author").get("name")))
+        try:
+            print("{}: {}".format(
+                json_data[i].get("sha"), json_data[i].get(
+                    "commit").get("author").get("name")))
+        except Exception:
+            break
         i += 1
