@@ -6,5 +6,6 @@ request.get(url, (err, resp, body) => {
   if (err) {
     console.log(err);
   }
+  console.log(body)
   console.log(JSON.parse(body).title);
 });
