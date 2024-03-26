@@ -5,7 +5,7 @@ request.get(process.argv[2], (err, resp, body) => {
   if (err) {
     console.log(err);
   }
-  let users = {
+  var users = {
     1: 0,
     2: 0,
     3: 0,
