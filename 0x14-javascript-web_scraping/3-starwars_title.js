@@ -7,6 +7,6 @@ request.get(url, (err, resp, body) => {
     console.log(err);
   }
   console.log(typeof(body))
-  typeof(JSON.parse(body))
+  console.log(typeof(JSON.parse(body)))
   console.log(JSON.parse(body).title);
 });
