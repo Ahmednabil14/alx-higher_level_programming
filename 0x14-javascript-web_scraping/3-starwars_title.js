@@ -2,10 +2,9 @@
 const request = require('request');
 
 const url = `https://swapi-api.alx-tools.com/api/films/${process.argv[2]}`;
-request.get(url, (err, resp) => {
+request.get(url, (err, resp, body) => {
   if (err) {
     console.log(err);
   }
-  console.log(resp);
-  console.log(typeof(resp))
+  console.log(body.title);
 });
