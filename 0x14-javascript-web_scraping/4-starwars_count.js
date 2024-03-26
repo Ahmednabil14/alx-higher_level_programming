@@ -14,5 +14,5 @@ request.get(process.argv[2], (err, resp, body) => {
       }
     }
   }
-  return (count);
+  console.log(count);
 });
