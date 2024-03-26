@@ -6,5 +6,6 @@ request.get(url, (err, resp) => {
   if (err) {
     console.log(err);
   }
-  console.log(resp.toJSON().title);
+  console.log(resp);
+  console.log(typeof(resp))
 });
