@@ -21,6 +21,7 @@ request.get(process.argv[2], (err, resp, body) => {
   for (const user in users) {
     console.log(typeof (user));
     for (const obj of objs) {
+        console.log(typeof(obj.userId))
       if (obj.userId === user && obj.completed === true) {
         users[user] += 1;
       }
