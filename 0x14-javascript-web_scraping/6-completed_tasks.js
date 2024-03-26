@@ -19,10 +19,8 @@ request.get(process.argv[2], (err, resp, body) => {
   };
   const objs = JSON.parse(body);
   for (const user in users) {
-    console.log(typeof (user));
     for (const obj of objs) {
-        console.log(typeof(obj.userId))
-      if (obj.userId === user && obj.completed === true) {
+      if (obj.userId === Number(user) && obj.completed === true) {
         users[user] += 1;
       }
     }
