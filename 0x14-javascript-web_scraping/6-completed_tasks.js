@@ -5,7 +5,7 @@ request.get(process.argv[2], (err, resp, body) => {
   if (err) {
     console.log(err);
   }
-  var users = {
+  const users = {
     1: 0,
     2: 0,
     3: 0,
@@ -19,6 +19,7 @@ request.get(process.argv[2], (err, resp, body) => {
   };
   const objs = JSON.parse(body);
   for (const user in users) {
+    console.log(typeof (user));
     for (const obj of objs) {
       if (obj.userId === user && obj.completed === true) {
         users[user] += 1;
