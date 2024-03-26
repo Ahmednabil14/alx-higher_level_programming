@@ -25,5 +25,5 @@ request.get(process.argv[2], (err, resp, body) => {
       }
     }
   }
-  console.log(users);
+  console.log(JSON.stringify(users, null, 2));
 });
