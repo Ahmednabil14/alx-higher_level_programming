@@ -6,7 +6,6 @@ request.get(url, (err, resp, body) => {
   if (err) {
     console.log(err);
   }
-  console.log(typeof(body))
-  console.log(typeof(JSON.parse(body)))
+  /* body is string so you need to convert to json */
   console.log(JSON.parse(body).title);
 });
